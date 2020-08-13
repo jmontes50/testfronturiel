@@ -13,3 +13,8 @@
 h1{
   font-family: 'Playfair Display', serif;
 }
+
+/* fix outline black */
+button{
+  outline:none !important;
+}
