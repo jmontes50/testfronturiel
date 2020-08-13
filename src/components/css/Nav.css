@@ -1,0 +1,27 @@
+.navmenu{
+    display: flex;
+    height:60px;
+    padding: 10px 0;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter';
+    font-size: 13px;
+}
+
+.navmenu > div{
+    display:flex;
+    align-items: center;
+}
+
+.navmenu > div > * {
+    margin:0 0 0 20px;
+}
+
+.navmenu > div > ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.navmenu li{
+    margin:0 0 0 20px;
+}
