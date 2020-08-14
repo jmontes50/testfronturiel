@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextField, Button } from "@material-ui/core";
 import { loginUser } from "../services/userService";
+import {AuthContext} from '../context/AuthContext';
 
 export default function LoginView(props) {
+
+  const {setAuthToken} = useContext(AuthContext);
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -10,7 +14,11 @@ export default function LoginView(props) {
 
   const Loguear = async () => {
     const data = await loginUser(user, props);
-    console.log(data)
+    if (data) {
+      console.log("Token Got -> " + data.token);
+      console.log("User Got -> " + data.user.email);
+      setAuthToken(data.token, data.user);
+  }
   }
 
   return (

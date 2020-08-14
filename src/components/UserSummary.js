@@ -1,12 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { NavLink } from 'react-router-dom';
 
 const UserSummary = (props) => {
     const { editUser } = props;
+    const [user, setUser] = useState({
+        email:'',
+        password:''
+
+    });
 
     const onSubmit = () => {
         editUser(false);
     }
+
+    useEffect(() => {
+        const userLocal = JSON.parse(localStorage.getItem('user'));
+        console.log(userLocal);
+        setUser({
+            ...user,
+            firstName: userLocal.firstName,
+            lastName: userLocal.lastName,
+            email: userLocal.email
+        });
+        console.log("USER---" + user);
+    }, []);
+
     return (
         <div className="col-lg-4">
             <div className="profile-card-4 z-depth-3">
@@ -15,8 +33,8 @@ const UserSummary = (props) => {
                         <div className="user-box">
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar" />
                         </div>
-                        <h5 className="mb-1 text-white">Jhon Doe</h5>
-                        <h6 className="text-light">UI/UX Engineer</h6>
+                        <h5 className="mb-1 text-white">{user.firstName}</h5>
+                        <h6 className="text-light">{user.lastName}</h6>
                     </div>
                     <div className="card-body">
                         <ul className="list-group shadow-none">
@@ -34,7 +52,7 @@ const UserSummary = (props) => {
                                     <i className="fa fa-envelope"></i>
                                 </div>
                                 <div className="list-details">
-                                    <span>javier@gmail.com</span>
+                                    <span>{user.email}</span>
                                     <small>Email Address</small>
                                 </div>
                             </li>
