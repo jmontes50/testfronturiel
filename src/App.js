@@ -7,7 +7,7 @@ import Routes from "./routes";
 export default function App() {
   return (
     <div className="container">
-      <Nav/>
+      <Nav className="mb-4"/>
       <Router>
         <Switch>
           <Routes />
