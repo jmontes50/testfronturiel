@@ -4,6 +4,7 @@ import LoginView from "./Views/LoginView";
 import HomeView from "./Views/HomeView";
 import VenuesView from "./Views/VenuesView";
 import VenuesDetailView from "./Views/VenueDetailView";
+import Profile from "./Views/Profile";
 
 function Routes() {
   return (
@@ -11,6 +12,7 @@ function Routes() {
       <Route exact path="/" component={HomeView} />
       <Route exact path="/login" component={LoginView} />
       <Route exact path="/venues/:venue" component={VenuesView} />
+      <Route exact path="/profile" component={Profile} />
       <Route
         exact
         path="/detailvenue/"
