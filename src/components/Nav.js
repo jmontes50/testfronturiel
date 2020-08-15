@@ -24,7 +24,8 @@ export default function Nav() {
     <nav className="navbar navbar-expand-lg navbar-light navmenu">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          <img src={logo} />
+          <img src={logo} className="mr-2" />
+          TravelCards
         </Link>
         <button
           className="navbar-toggler"
