@@ -9,7 +9,7 @@ export default function Header() {
   const [venue, setVenue] = useState("");
 
   return (
-    <div className="row">
+    <div className="row mt-5">
       <div className="col-12 col-md-6 d-flex flex-column justify-content-around p-5">
         <h1>Descubre y comparte nuevos lugares</h1>
         <TextField

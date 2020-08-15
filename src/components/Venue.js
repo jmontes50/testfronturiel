@@ -1,6 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
+import { AuthContext } from "../context/AuthContext";
+import Swal from "sweetalert2";
+import { useHistory } from 'react-router-dom';
+
 export default function Venue({
   name,
   address,
@@ -11,6 +15,21 @@ export default function Venue({
   latitude,
   longitude,
 }) {
+  const { user, token } = useContext(AuthContext);
+
+  const history = useHistory();
+
+  const denegado = () => {
+    Swal.fire({
+      icon: "error",
+      title: "No esta logueado!",
+      showConfirmButton: false,
+      timer: 2000,
+    }).then(() => {
+     return history.push('/login');
+    });
+  }
+
   return (
     <div className="col-4 mb-4">
       <div
@@ -70,27 +89,35 @@ export default function Venue({
           </ul>
         </div>
         <div className="card-footer d-flex justify-content-center">
-          <Link
-            to={{
-              pathname: "/detailvenue",
-              state: {
-                name,
-                address,
-                country,
-                city,
-                state,
-                distance,
-                latitude,
-                longitude,
-              },
-            }}
-            // className="btn btn-success"
-            // style={{backgroundColor:'#1ABE84'}}
-          >
-            <Button variant="contained" color="secondary" size="large">
-              <i className="fas fa-heart" style={{ color: "white" }}></i> Añadir a Favoritos
+          {user !== null ? (
+            <Link
+              to={{
+                pathname: "/detailvenue",
+                state: {
+                  name,
+                  address,
+                  country,
+                  city,
+                  state,
+                  distance,
+                  latitude,
+                  longitude,
+                },
+              }}
+              // className="btn btn-success"
+              // style={{backgroundColor:'#1ABE84'}}
+            >
+              <Button variant="contained" color="secondary" size="large">
+                <i className="fas fa-heart" style={{ color: "white" }}></i>{" "}
+                Añadir a Favoritos
+              </Button>
+            </Link>
+          ) : (
+            <Button variant="contained" color="default" size="large" onClick={() => {denegado()}}>
+              <i className="fas fa-heart" style={{ color: "white" }}></i> Añadir
+              a Favoritos
             </Button>
-          </Link>
+          )}
         </div>
       </div>
     </div>

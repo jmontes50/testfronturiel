@@ -11,7 +11,7 @@ const AuthContextProvider = (props) => {
     const setAuthToken = (token, user) => {
         setUser(user);
         setToken(token);
-        return history.push('/users');
+        return history.push('/');
     }
 
     const removeToken = (token) => {
@@ -25,7 +25,6 @@ const AuthContextProvider = (props) => {
             {props.children}
         </AuthContext.Provider>
     )
-
 }
 
 export default AuthContextProvider;

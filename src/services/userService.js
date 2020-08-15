@@ -18,4 +18,18 @@ let loginUser = async (user, props) => {
     }
 }
 
-export {loginUser};
+let registerUser = async (user, props) => {
+    console.log("recibido",user)
+    try {
+        const {data} = await axios.post(`${base_url}/users/`, user);
+        console.log("register -> ", data);
+        console.log("user" + data.user);
+
+        return data;
+    } catch (error) {
+        console.error(error)
+        return error;
+    }
+}
+
+export {loginUser, registerUser};
